@@ -1,12 +1,11 @@
-import React, { useState } from 'react'
-import Navbar from './Navbar'
 import axios from 'axios'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-const SignUp = () => {
+const SignIn = () => {
     const [data,setData]=useState(
         {
-            "name":"",
+  
             "email":"",
             "password":""
 
@@ -19,15 +18,13 @@ const SignUp = () => {
 
     const readValue=()=>{
         console.log(data)
-        axios.post("http://localhost:8080/signup",data).then(
+        axios.post("http://localhost:8080/signin",data).then(
             (response)=>{
                 console.log(response.data)
-                if (response.data.status=="success") {
-                    alert("User added Successfully")
+     
+                    alert(response.data.status)
                     
-                } else {
-                    alert("Error")
-                }   
+   
             }
         ).catch(
             (error)=>{
@@ -40,18 +37,13 @@ const SignUp = () => {
     <div>
         
         <center>
-            <h3>Signup</h3>
+            <h3>Sign In</h3>
         </center>
         <div className="container">
             <div className="row">
                 <div className="col col-12 col-sm-12 col-md-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                     <div className="row g-3">
-                        <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
-
-                            <label htmlFor="" className="form-label">User Name</label>
-                            <input type="text" className="form-control" name='name' value={data.name} onChange={inputHandler} />
-
-                        </div>
+                        
                         <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
 
                             <label htmlFor="" className="form-label">Email</label>
@@ -68,10 +60,10 @@ const SignUp = () => {
                 
                         <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
 
-                            <button className="btn btn-success" onClick={readValue}>Add User</button>
+                            <button className="btn btn-success" onClick={readValue}>Log In</button>
 
                         </div>
-                        <Link className="nav-link" to="/">Log In</Link>
+                        <Link className="nav-link" to="/signup">Sign Up</Link>
                     </div>
                 </div>
             </div>
@@ -81,4 +73,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default SignIn
